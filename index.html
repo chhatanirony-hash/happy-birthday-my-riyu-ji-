@@ -228,34 +228,40 @@
       }
     }
 
-    // 5. Wishes Wall (Loads real wishes)
-    const presetWishes = [];
+    // 5. Wishes Wall (SheetDB Cloud Database)
+    const SHEETDB_URL = "https://sheetdb.io/api/v1/a1btxdhg9fl4g"; // <-- Yahan apna SheetDB link paste karein
 
-    function loadWishes() {
+    async function loadWishes() {
       const feed = document.getElementById("wishesFeed");
       if (!feed) return;
-      feed.innerHTML = "";
+      feed.innerHTML = "<p style='text-align:center; color:#f3f4f6;'>Loading wishes...</p>";
 
-      const externalWishes = JSON.parse(localStorage.getItem("shared_wishes") || "[]");
-      const allWishes = [...externalWishes, ...presetWishes];
+      try {
+        const res = await fetch(SHEETDB_URL);
+        const data = await res.json();
+        feed.innerHTML = "";
 
-      if (allWishes.length === 0) {
-        feed.innerHTML = `<p style="text-align:center; color:#f3f4f6; font-size:0.95rem; font-style:italic;">No wishes yet. Wishes sent by friends will appear here! ✨</p>`;
-        return;
+        if (!data || data.length === 0) {
+          feed.innerHTML = "<p style='text-align:center; color:#f3f4f6; font-size:0.95rem; font-style:italic;'>No wishes yet. Wishes sent by friends will appear here! ✨</p>";
+          return;
+        }
+
+        // Nayi wishes sabse upar dikhengi
+        data.reverse().forEach(w => {
+          const item = document.createElement("div");
+          item.className = "wish-item";
+          item.innerHTML = `
+            <div class="wish-header">
+              <strong>${escapeHtml(w.name)}</strong>
+              <span>${escapeHtml(w.date || 'Today')}</span>
+            </div>
+            <p>${escapeHtml(w.text)}</p>
+          `;
+          feed.appendChild(item);
+        });
+      } catch (err) {
+        feed.innerHTML = "<p style='text-align:center; color:#f3f4f6;'>No wishes yet. Wishes sent by friends will appear here! ✨</p>";
       }
-
-      allWishes.forEach(w => {
-        const item = document.createElement("div");
-        item.className = "wish-item";
-        item.innerHTML = `
-          <div class="wish-header">
-            <strong>${escapeHtml(w.name)}</strong>
-            <span>${escapeHtml(w.date || 'Today')}</span>
-          </div>
-          <p>${escapeHtml(w.text)}</p>
-        `;
-        feed.appendChild(item);
-      });
     }
 
     function escapeHtml(str) {
