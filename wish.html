@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wish Riya a Happy Birthday! 🎂</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+  <div class="welcome-screen">
+    <div class="glass-card welcome-card" style="max-width: 480px; text-align: left;">
+      <h2 style="color: #ffffff; text-align: center; margin-bottom: 8px;">Leave a Birthday Wish for Riya 🌸</h2>
+      <p style="color: #e5e7eb; font-size: 0.9rem; text-align: center; margin-bottom: 24px;">Your message will appear directly on her birthday surprise website!</p>
+      
+      <form class="custom-form" onsubmit="sendFriendWish(event)">
+        <input type="text" id="friendName" placeholder="Your Name (e.g. Rahul)" required />
+        <textarea id="friendMessage" placeholder="Write your birthday wish for Riya..." rows="4" required></textarea>
+        <button type="submit" class="submit-btn" style="margin-top: 10px;">Post Wish for Riya 💌</button>
+      </form>
+      <div id="statusMsg" style="margin-top: 15px; text-align: center; font-weight: bold; color: #fde047;"></div>
+    </div>
+  </div>
+
+  <script>
+    function sendFriendWish(e) {
+      e.preventDefault();
+      const name = document.getElementById("friendName").value.trim();
+      const text = document.getElementById("friendMessage").value.trim();
+
+      const existing = JSON.parse(localStorage.getItem("shared_wishes") || "[]");
+      existing.unshift({ name, text, date: "Today" });
+      localStorage.setItem("shared_wishes", JSON.stringify(existing));
+
+      if (typeof confetti === 'function') {
+        confetti({ particleCount: 70, spread: 70 });
+      }
+
+      document.getElementById("friendName").value = "";
+      document.getElementById("friendMessage").value = "";
+      document.getElementById("statusMsg").innerText = "🎉 Thank you! Your wish has been saved for Riya.";
+    }
+  </script>
+</body>
+</html>

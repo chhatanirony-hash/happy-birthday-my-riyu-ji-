@@ -1,0 +1,26 @@
+{
+  "name": "happy-birthday-my-riyu-ji-",
+  "version": "1.0.0",
+  "description": "✨🎂  \"Happy Birthday to the most incredible girl!   I’ve been spending a lot of time thinking about what to say to you today, and honestly, words kind of fall short when it comes to capturing just how much you truly mean to me. I just wanted to take a quiet moment out of the day to remind you of how wonderfully special you are. You possess this rare, magical way of bringing so much warmth and light into the lives of everyone around you—and especially mine.   Your smile has this unbelievable, effortless power to instantly make any heavy day feel lighter. Your laugh is genuinely my absolute favorite sound in the world, and every single moment spent talking to you, laughing together, or simply sharing space is a memory I hold onto and never forget. You bring so much comfort, genuine inspiration, and brightness into my life just by simply being yourself. Sometimes I really don't think you realize how deeply valued you are, or how much your presence alone changes everything for the better.   As you officially step into this brand-new chapter and year of your life, I hope it brings you as much boundless joy, unconditional love, and quiet peace as you constantly give out to the world. You deserve every single good thing coming your way, and I genuinely hope all your biggest, wildest dreams start coming true right before your eyes. May your special day be wrapped up in your favorite things, surrounded by endless laughter, and overflowing with all the happiness your heart can possibly hold.   Thank you for simply existing, for brightening up my world, and for being the truly wonderful person that you are. Have the absolute best, most magical birthday ever! 💖💫🥂\"",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chhatanirony-hash/happy-birthday-my-riyu-ji-.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/chhatanirony-hash/happy-birthday-my-riyu-ji-/issues"
+  },
+  "homepage": "https://github.com/chhatanirony-hash/happy-birthday-my-riyu-ji-#readme",
+  "dependencies": {
+    "express": "^5.2.1",
+    "sqlite3": "^6.0.1"
+  }
+}
